@@ -8,7 +8,6 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
 
 import com.paul.paulxdaggertweaks.asm.patcher.ClassPatcher;
-import com.paul.paulxdaggertweaks.asm.patcher.patchers.GUIMainMenuPatcher;
 import com.paul.paulxdaggertweaks.asm.patcher.patchers.GuiChatPatcher;
 
 import net.minecraft.launchwrapper.IClassTransformer;
@@ -23,7 +22,6 @@ public class ClassTransformer implements IClassTransformer {
 
 	public ClassTransformer() {
 //	patchers.put(targetClass, <patcher>);
-		patchers.put("net.minecraft.client.gui.GuiMainMenu", new GUIMainMenuPatcher());
 		patchers.put("net.minecraft.client.gui.GuiChat", new GuiChatPatcher());
 
 	}
@@ -35,12 +33,16 @@ public class ClassTransformer implements IClassTransformer {
 	public byte[] transform(String name, String transformedName, byte[] bytes) {
 		ClassPatcher patcher = patchers.get(transformedName);
 		if (patcher != null) {
-			ClassReader reader = new ClassReader(bytes);
 			ClassNode classNode = new ClassNode();
-			reader.accept(classNode, ClassReader.SKIP_FRAMES);
+			ClassReader reader = new ClassReader(bytes);
+			reader.accept(classNode, 0);
+
 			patcher.patch(classNode);
-			ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
+
+			ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+
 			classNode.accept(writer);
+
 			return writer.toByteArray();
 		}
 		return bytes;
