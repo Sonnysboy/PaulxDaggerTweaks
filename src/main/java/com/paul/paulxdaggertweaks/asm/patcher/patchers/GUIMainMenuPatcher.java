@@ -1,6 +1,9 @@
 package com.paul.paulxdaggertweaks.asm.patcher.patchers;
 
 
+import static com.paul.paulxdaggertweaks.asm.utils.ASMUtils.insnListOf;
+import static com.paul.paulxdaggertweaks.asm.utils.ASMUtils.invokeVirtual;
+
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.FieldInsnNode;
 import org.objectweb.asm.tree.LdcInsnNode;
@@ -8,7 +11,6 @@ import org.objectweb.asm.tree.MethodNode;
 
 import com.paul.paulxdaggertweaks.asm.patcher.ClassPatcher;
 import com.paul.paulxdaggertweaks.asm.patcher.PatchMethod;
-import static com.paul.paulxdaggertweaks.asm.utils.ASMUtils.*;
 
 public class GUIMainMenuPatcher extends ClassPatcher implements Opcodes {
 

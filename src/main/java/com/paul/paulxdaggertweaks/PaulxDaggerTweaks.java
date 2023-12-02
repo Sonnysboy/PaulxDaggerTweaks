@@ -8,15 +8,13 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = "paulxdaggertweaks", useMetadata = true)
 public class PaulxDaggerTweaks {
 
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
 
-	System.out.println("preInit");
-    }
+	}
 
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
 
-	System.out.println("init");
-    }
+	}
 }
