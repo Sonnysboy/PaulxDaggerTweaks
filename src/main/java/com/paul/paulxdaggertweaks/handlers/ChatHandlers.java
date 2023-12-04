@@ -60,30 +60,20 @@ public class ChatHandlers {
 			int height = bi.getHeight();
 
 			System.out.println("image dimensions: " + width + " x " + height);
-			
-			
+
 			GlStateManager.pushMatrix();
-			
+
 			GlStateManager.color(1f, 1f, 1f, 1f);
 
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, dt.getGlTextureId());
-			
-			int w;
 
-			Gui.drawModalRectWithCustomSizedTexture(
-					0,
-					0, 
-					0,
-					0, 
-					width,
-					Minecraft.getMinecraft().displayHeight, width, height);
+			Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, width, Minecraft.getMinecraft().displayHeight, width,
+					height);
 
-			
 			GlStateManager.popMatrix();
 
 		}
 
-		// this is so fucking scuffed
 	}
 
 	@SubscribeEvent
@@ -119,27 +109,6 @@ public class ChatHandlers {
 		} else {
 			System.out.println("not image");
 		}
-	}
-
-	private static void drawTexturedModalRect(float xCoord, float yCoord, int minU, int minV, int maxU, int maxV) {
-		float f = 0.00390625F;
-		float f1 = 0.00390625F;
-		Tessellator tessellator = Tessellator.getInstance();
-		BufferBuilder bufferbuilder = tessellator.getBuffer();
-		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-		bufferbuilder.pos((double) (xCoord + 0.0F), (double) (yCoord + (float) maxV), (double) -90)
-				.tex((double) ((float) (minU + 0) * 0.00390625F), (double) ((float) (minV + maxV) * 0.00390625F))
-				.endVertex();
-		bufferbuilder.pos((double) (xCoord + (float) maxU), (double) (yCoord + (float) maxV), (double) -90)
-				.tex((double) ((float) (minU + maxU) * 0.00390625F), (double) ((float) (minV + maxV) * 0.00390625F))
-				.endVertex();
-		bufferbuilder.pos((double) (xCoord + (float) maxU), (double) (yCoord + 0.0F), (double) -90)
-				.tex((double) ((float) (minU + maxU) * 0.00390625F), (double) ((float) (minV + 0) * 0.00390625F))
-				.endVertex();
-		bufferbuilder.pos((double) (xCoord + 0.0F), (double) (yCoord + 0.0F), (double) -90)
-				.tex((double) ((float) (minU + 0) * 0.00390625F), (double) ((float) (minV + 0) * 0.00390625F))
-				.endVertex();
-		tessellator.draw();
 	}
 
 }
